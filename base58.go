@@ -133,3 +133,17 @@ func (b58 *Base58) DecodeString(s string) ([]byte, error) {
 
 	return buf.Bytes(), nil
 }
+
+func Encode(data []byte) ([]byte, error) {
+	b58 := NewBitcoinBase58()
+	s, err := b58.EncodeToString(data)
+	if err != nil {
+		return nil, err
+	}
+	return []byte(s), nil
+}
+
+func Decode(data []byte) ([]byte, error) {
+	b58 := NewBitcoinBase58()
+	return b58.DecodeString(string(data))
+}
